@@ -1,13 +1,13 @@
 import './style.css'
 
 import * as THREE from 'three'
-import { TorusGeometry } from 'three'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 /*const THREE=require('three')*/
 
 const scene=new THREE.Scene()
 
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000)
+let camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000)
 
 const renderer=new THREE.WebGL1Renderer({
   canvas:document.getElementById('back')
@@ -32,6 +32,11 @@ const lumiere=new THREE.PointLight(0xffffff)
 lumiere.position.set(5,5,5)
 scene.add(lumiere)
 
+/*const lightHelper=new THREE.PointLightHelper(lumiere,1,0xffffff)
+scene.add(lightHelper)*/
+
+const controls=new OrbitControls(camera,renderer.domElement)
+
 function animate(){
   requestAnimationFrame(animate)
 
@@ -39,6 +44,7 @@ function animate(){
   geometriePlusMaterial.rotation.y += 0.01  
   geometriePlusMaterial.rotation.z += 0.01  
 
+  controls.update()
 
   renderer.render(scene,camera)
 }
