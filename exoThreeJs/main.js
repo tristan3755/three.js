@@ -33,15 +33,12 @@ camera.position.setX(0)
 
 /*modèle blender*/
 
-gltfLoader.load('./blender/scene.gltf',(gltf)=>{
-  scene.add(gltf.scene)
+gltfLoader.load('scene.gltf',(gltf)=>{
+  scene.add(gltf.scene) 
   gltf.scene.position.y += -100;
-
 })
 
 /*modèle blender*/
-
-
 
 const lumiere=new THREE.PointLight(0xffffff,0.5)
 lumiere.position.set(25,100,300)
