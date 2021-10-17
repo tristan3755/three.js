@@ -29,7 +29,9 @@ camera.position.setX(0)
 
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth,window.innerHeight)
-
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1;
+  renderer.outputEncoding = THREE.sRGBEncoding;
 
 /*modèle blender*/
 
