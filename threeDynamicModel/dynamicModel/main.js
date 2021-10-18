@@ -1,10 +1,9 @@
 import './style.css'
-
+import * as TWEEN from '@tweenjs/tween.js'
 import * as THREE from 'three'
 /*import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'*/
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
-
-
+import { Mesh } from 'three'
 
 /*const THREE=require('three')*/
 const gltfLoader=new GLTFLoader()
@@ -41,7 +40,7 @@ let valueWindowHalfY=window.innerHeight/2
 document.addEventListener('mousemove',(e)=>{
 mouseX=(e.clientX-valueWindowHalfX)
 mouseY=(e.clientY-valueWindowHalfY)
-console.log(mouseX,mouseY)
+/*console.log(mouseX,mouseY)*/
 })
 
 targetX=mouseX*0.05
@@ -57,30 +56,41 @@ gltfLoader.load('scene.gltf',(gltf)=>{
  
 })
 
-/*modèle blender*/
+let position={x:0}
+let target={x:-6}
 
-/*const lumiere=new THREE.PointLight(0xffffff,84)
-lumiere.position.set(15,100,300)
-scene.add(lumiere)*/
+function move1(){
+
+const tween1=new TWEEN.Tween(position).to(target,4000)
+tween1.onUpdate(function(){
+  objet.position.x = position.x;
+});
+tween1.easing(TWEEN.Easing.Elastic.InOut)
+tween1.start();
+}
+
+let bouton1=document.getElementById('button')
+bouton1.addEventListener('click',()=>{
 
 
-/*const controls=new OrbitControls(camera,renderer.domElement)*/
+  move1()
+
+   /* objet.position.x=-6
+    objet.rotation.y=-6*/
+  })
 
 function animate(){
  
-/*console.log(objet)*/
-  /*controls.update()*/
 camera.position.setX(mouseX/1500)
-camera.position.setY(mouseY/1500)
-if(objet){
-objet.rotation.y+=(mouseX/45000)
-objet.rotation.x+=(mouseY/445000)
-}
+camera.position.setY(2-mouseY/1500)
+
+TWEEN.update()
   renderer.render(scene,camera)
   requestAnimationFrame(animate)
 }
 
 animate()
+
 
 /* resize de la camera*/
 window.onresize = function () {
@@ -91,3 +101,5 @@ window.onresize = function () {
   renderer.setSize( window.innerWidth, window.innerHeight );
 
 };
+
+
