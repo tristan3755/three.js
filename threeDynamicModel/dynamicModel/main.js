@@ -1,9 +1,8 @@
 import './style.css'
 import * as TWEEN from '@tweenjs/tween.js'
 import * as THREE from 'three'
-/*import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'*/
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
-import { Mesh } from 'three'
+
 
 /*const THREE=require('three')*/
 const gltfLoader=new GLTFLoader()
@@ -59,14 +58,27 @@ gltfLoader.load('scene.gltf',(gltf)=>{
 let position={x:0}
 let target={x:-6}
 
+let position2={y:-5}
+let target2={y:-6}
+
 function move1(){
 
-const tween1=new TWEEN.Tween(position).to(target,4000)
+const tween1=new TWEEN.Tween(position).to(target,2000)
 tween1.onUpdate(function(){
   objet.position.x = position.x;
 });
-tween1.easing(TWEEN.Easing.Elastic.InOut)
+tween1.easing(TWEEN.Easing.Exponential.Out)
 tween1.start();
+
+
+const tween2=new TWEEN.Tween(position2).to(target2,2000)
+tween2.onUpdate(function(){
+  objet.rotation.y = position2.y;
+});
+tween2.easing(TWEEN.Easing.Exponential.Out)
+tween2.start();
+
+
 }
 
 let bouton1=document.getElementById('button')
@@ -85,6 +97,7 @@ camera.position.setX(mouseX/1500)
 camera.position.setY(2-mouseY/1500)
 
 TWEEN.update()
+
   renderer.render(scene,camera)
   requestAnimationFrame(animate)
 }
