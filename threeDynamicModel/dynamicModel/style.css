@@ -6,19 +6,21 @@ body{
   box-sizing: border-box;
 }
 canvas{
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: black;
   width: 100%;
   height: 100vh;
 }
-#button{
-  background-color: aliceblue;
+#button,#fermeture{
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 80px;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
   z-index: 1;
+}
+#fermeture{
+  display: none;
 }

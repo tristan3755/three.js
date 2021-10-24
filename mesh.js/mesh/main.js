@@ -38,7 +38,7 @@ let objet
 gltfLoader.load('scene.gltf',(gltf)=>{
   objet=gltf.scene
   objet.position.y=-7
- scene.add(objet) 
+ scene.add(objet)   
  
 })
 
