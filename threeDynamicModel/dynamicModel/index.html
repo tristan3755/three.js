@@ -5,14 +5,74 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
     <section id="sect1">
-      <span class="loading">
-
-      </span>
+      <div class="loading">
+        <p class="chargement">
+          Chargement...
+        </p>
+          <div class="loader">
+            <svg width="100%" height="100%" viewBox="0 0 494 486" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M428 243C428 140.827 345.173 58 243 58C140.827 58 58 140.827 58 243C58 345.173 140.827 428 243 428" stroke="url(#paint0_linear_0:1)" stroke-width="15" stroke-linecap="round"/>
+              <g filter="url(#filter0_f_0:1)">
+              <path d="M428 243C428 140.827 345.173 58 243 58C140.827 58 58 140.827 58 243C58 345.173 140.827 428 243 428" stroke="url(#paint1_linear_0:1)" stroke-width="15" stroke-linecap="round"/>
+              </g>
+              <g filter="url(#filter1_f_0:1)">
+              <path d="M428 243C428 140.827 345.173 58 243 58C140.827 58 58 140.827 58 243C58 345.173 140.827 428 243 428" stroke="url(#paint2_linear_0:1)" stroke-width="15" stroke-linecap="round"/>
+              </g>
+              <g filter="url(#filter2_f_0:1)">
+              <path d="M428 243C428 140.827 345.173 58 243 58C140.827 58 58 140.827 58 243C58 345.173 140.827 428 243 428" stroke="url(#paint3_linear_0:1)" stroke-width="15" stroke-linecap="round"/>
+              </g>
+              <circle cx="425" cy="209" r="16" fill="#71519B"/>
+              <g filter="url(#filter3_f_0:1)">
+              <circle cx="425.5" cy="209.5" r="18.5" fill="#71519B"/>
+              </g>
+              <defs>
+              <filter id="filter0_f_0:1" x="0.5" y="0.5" width="485" height="485" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+              <feGaussianBlur stdDeviation="25" result="effect1_foregroundBlur_0:1"/>
+              </filter>
+              <filter id="filter1_f_0:1" x="0.5" y="0.5" width="485" height="485" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+              <feGaussianBlur stdDeviation="25" result="effect1_foregroundBlur_0:1"/>
+              </filter>
+              <filter id="filter2_f_0:1" x="0.5" y="0.5" width="485" height="485" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+              <feGaussianBlur stdDeviation="25" result="effect1_foregroundBlur_0:1"/>
+              </filter>
+              <filter id="filter3_f_0:1" x="357" y="141" width="137" height="137" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+              <feGaussianBlur stdDeviation="25" result="effect1_foregroundBlur_0:1"/>
+              </filter>
+              <linearGradient id="paint0_linear_0:1" x1="117" y1="117.5" x2="394" y2="315.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0.872836" stop-color="#71519B"/>
+              <stop offset="0.896653" stop-color="#71519B" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="paint1_linear_0:1" x1="117" y1="117.5" x2="394" y2="315.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0.872836" stop-color="#71519B"/>
+              <stop offset="0.896653" stop-color="#71519B" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="paint2_linear_0:1" x1="117" y1="117.5" x2="394" y2="315.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0.872836" stop-color="#71519B"/>
+              <stop offset="0.896653" stop-color="#71519B" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="paint3_linear_0:1" x1="117" y1="117.5" x2="394" y2="315.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0.872836" stop-color="#71519B"/>
+              <stop offset="0.896653" stop-color="#71519B" stop-opacity="0"/>
+              </linearGradient>
+              </defs>
+              </svg>   
+          </div>
+      </div>
     <canvas id="back">
-      
     </canvas>
     <div id="button">
       <svg width="100%" height="100%" viewBox="0 0 136 92" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,9 +85,25 @@
       <svg width="100%" height="100%" viewBox="0 0 98 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M95.1172 3L4.99967 96.6954" stroke="white" stroke-width="5" stroke-linecap="round"/>
         <path d="M3 5L94.9239 96.9239" stroke="white" stroke-width="5" stroke-linecap="round"/>
-        </svg>
-        
+        </svg>  
     </div>
+    <div class="menu">
+      <div class="un">
+        <svg width="100%" height="100%" viewBox="0 0 224 224" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="112" cy="112" r="104.5" stroke="white" stroke-width="15"/>
+          <path d="M117.629 137H111.09V93.6523L97.9766 98.4688V92.5625L116.609 85.5664H117.629V137Z" fill="white"/>
+          </svg>
+      </div>
+      <div class="un">
+        <svg width="100%" height="100%" viewBox="0 0 224 224" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="112" cy="112" r="104.5" stroke="white" stroke-width="15"/>
+          <path d="M129.793 137H96.2539V132.324L113.973 112.637C116.598 109.66 118.402 107.246 119.387 105.395C120.395 103.52 120.898 101.586 120.898 99.5938C120.898 96.9219 120.09 94.7305 118.473 93.0195C116.855 91.3086 114.699 90.4531 112.004 90.4531C108.77 90.4531 106.25 91.3789 104.445 93.2305C102.664 95.0586 101.773 97.6133 101.773 100.895H95.2695C95.2695 96.1836 96.7812 92.375 99.8047 89.4688C102.852 86.5625 106.918 85.1094 112.004 85.1094C116.762 85.1094 120.523 86.3633 123.289 88.8711C126.055 91.3555 127.438 94.6719 127.438 98.8203C127.438 103.859 124.227 109.859 117.805 116.82L104.094 131.691H129.793V137Z" fill="white"/>
+          </svg>
+      </div>
+    </div>
+    <p class="titre">
+      CYBERPUNK
+    </p>
   </section>
     <script type="module" src="/main.js"></script>
   </body>

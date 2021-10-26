@@ -71,6 +71,10 @@ let bouton1=document.getElementById('button')
 
 let fermeture=document.getElementById('fermeture')
 
+let menu=document.querySelector('.menu')
+
+let titre=document.querySelector('.titre')
+
 let position3={x:-6}
 let target3={x:0}
 
@@ -81,6 +85,8 @@ let target4={y:0}
   bouton1.addEventListener('click',()=>{
     bouton1.style.display='none'
     fermeture.style.display='flex'
+    menu.style.display='flex'
+    titre.style.left='-10vw'
     move1()
   })
   
@@ -115,6 +121,8 @@ let target4={y:0}
   fermeture.addEventListener('click',()=>{
     bouton1.style.display='flex'
     fermeture.style.display='none'
+    menu.style.display='none'
+    titre.style.left='2vw'
     moveRetour() 
   })
 
@@ -138,7 +146,11 @@ let target4={y:0}
     }
 
   TWEEN.update()
+  let chargement=document.querySelector('.loading')
 
+  if(objet){
+    chargement.style.display="none"
+  }
 
     renderer.render(scene,camera)
     requestAnimationFrame(animate)
@@ -156,9 +168,3 @@ window.onresize = function () {
 /*javascript*/
 
 
-let chargement=document.querySelector('.loading')
-
-  if(objet){
-    chargement.style.display="none"
-    console.log('loading')
-  }
