@@ -51,7 +51,7 @@ canvas{
 .loader{
 width: 50%;
 height: 50vh;
-animation: tourne infinite linear 10s;
+animation: tourne infinite linear 10s;  
 }
 @keyframes tourne {
   from{

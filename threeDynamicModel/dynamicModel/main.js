@@ -3,9 +3,11 @@ import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 
+
 /*const THREE=require('three')*/
 const gltfLoader=new GLTFLoader()
 const scene=new THREE.Scene()
+
 let camera=new THREE.PerspectiveCamera(5,window.innerWidth/window.innerHeight,0.1,1000)
 const renderer=new THREE.WebGL1Renderer({
   canvas:document.getElementById('back'),
@@ -21,31 +23,15 @@ const renderer=new THREE.WebGL1Renderer({
 
 /*modèle blender*/
 
-/*interraction*/
-let mouseX=0
-let mouseY=0
 
-let targetX=0
-let targetY=0
-
-let valueWindowHalfX= window.innerWidth/2
-let valueWindowHalfY=window.innerHeight/2
-
-document.addEventListener('mousemove',(e)=>{
-mouseX=(e.clientX-valueWindowHalfX)
-mouseY=(e.clientY-valueWindowHalfY)
-/*console.log(mouseX,mouseY)*/
-})
-
-targetX=mouseX*0.05
-targetY=mouseY*0.05
-
-camera.position.set(0,0,185)
+camera.position.set(0,2,185)
+/*camera.position.set(0,17,505)*/
 
 let objet
 
 gltfLoader.load('scene.gltf',(gltf)=>{
   objet=gltf.scene
+
  scene.add(objet) 
 },(xhr) => {
   console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
@@ -54,18 +40,13 @@ gltfLoader.load('scene.gltf',(gltf)=>{
   console.log(error)
 })
 
-
 function animate(){
- 
-  camera.position.setX(mouseX/1500)
-  camera.position.setY(2-mouseY/1500)
 
 let position={x:0}
 let target={x:-6}
 
 let position2={y:-5}
 let target2={y:-6}
-
 
 let bouton1=document.getElementById('button')
 
@@ -81,7 +62,6 @@ let target3={x:0}
 let position4={y:-2}
 let target4={y:0}
 
-
   bouton1.addEventListener('click',()=>{
     bouton1.style.display='none'
     fermeture.style.display='flex'
@@ -90,7 +70,6 @@ let target4={y:0}
     move1()
   })
   
-
   function move1(){
 
     const tween1=new TWEEN.Tween(position).to(target,2000)
@@ -102,8 +81,6 @@ let target4={y:0}
     tween1.onComplete(()=>{
       console.log('tween ok')
     })
-    
-    
     const tween2=new TWEEN.Tween(position2).to(target2,2000)
     tween2.onUpdate(function(){
       objet.rotation.y = position2.y;
@@ -116,8 +93,6 @@ let target4={y:0}
      
     })
     }
-
-
   fermeture.addEventListener('click',()=>{
     bouton1.style.display='flex'
     fermeture.style.display='none'
@@ -131,7 +106,6 @@ let target4={y:0}
     const tween3=new TWEEN.Tween(position3).to(target3,2000)
     tween3.onUpdate(function(){
       objet.position.x = position3.x;
-      
     });
     tween3.easing(TWEEN.Easing.Exponential.Out)
     tween3.start();
@@ -142,8 +116,22 @@ let target4={y:0}
     });
     tween4.easing(TWEEN.Easing.Exponential.Out)
     tween4.start();
-    
-    }
+   }
+
+   let cameraPositionInitial={y:2}
+   let targetCamera={y:-20}
+
+  
+    let changeCamera=document.getElementById('unUn')
+    const tweenCamera=new TWEEN.Tween(cameraPositionInitial).to(targetCamera,2000)
+    changeCamera.addEventListener('click',()=>{
+      
+      tweenCamera.onUpdate(()=>{
+       objet.position.y=cameraPositionInitial.y
+      });
+      tweenCamera.easing(TWEEN.Easing.Exponential.Out)
+      tweenCamera.start();
+  })
 
   TWEEN.update()
   let chargement=document.querySelector('.loading')
@@ -151,7 +139,8 @@ let target4={y:0}
   if(objet){
     chargement.style.display="none"
   }
-
+  
+  
     renderer.render(scene,camera)
     requestAnimationFrame(animate)
 }
@@ -162,9 +151,7 @@ window.onresize = function () {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize( window.innerWidth, window.innerHeight );
-
 };
-
 /*javascript*/
 
 
