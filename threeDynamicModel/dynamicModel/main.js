@@ -20,19 +20,32 @@ const renderer=new THREE.WebGL1Renderer({
   renderer.toneMappingExposure = 1;
   renderer.outputEncoding = THREE.sRGBEncoding;
 
-
 /*modèle blender*/
 
-
 camera.position.set(0,2,185)
-/*camera.position.set(0,17,505)*/
 
 let objet
 
 gltfLoader.load('scene.gltf',(gltf)=>{
   objet=gltf.scene
-
  scene.add(objet) 
+},(xhr) => {
+  console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+},
+(error) => {
+  console.log(error)
+})
+
+let objet2
+
+gltfLoader.load('robot/scene.gltf',(gltf2)=>{
+    objet2=gltf2.scene
+    if(objet2){
+    objet2.position.y=30
+    objet2.rotation.y=25.2
+    objet2.position.z=-300
+    }
+  scene.add(objet2)
 },(xhr) => {
   console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
 },
@@ -112,39 +125,80 @@ let target4={y:0}
     const tween4=new TWEEN.Tween(position4).to(target4,2000)
     tween4.onUpdate(function(){
       objet.rotation.y = position4.y;
-     
     });
     tween4.easing(TWEEN.Easing.Exponential.Out)
     tween4.start();
-   }
+  }
+  
+  let cameraInitialRobot={y:30}
+   let targetCameraRobot={y:-15}
 
    let cameraPositionInitial={y:2}
    let targetCamera={y:-20}
 
-  
     let changeCamera=document.getElementById('unUn')
+
     const tweenCamera=new TWEEN.Tween(cameraPositionInitial).to(targetCamera,2000)
+
+    const tweenRobot=new TWEEN.Tween(cameraInitialRobot).to(targetCameraRobot,2000)
+
+    let cyber2=document.getElementById('deux')
+
     changeCamera.addEventListener('click',()=>{
-      
       tweenCamera.onUpdate(()=>{
        objet.position.y=cameraPositionInitial.y
       });
       tweenCamera.easing(TWEEN.Easing.Exponential.Out)
       tweenCamera.start();
+
+      tweenRobot.onUpdate(()=>{
+        objet2.position.y=cameraInitialRobot.y
+       });
+       tweenRobot.easing(TWEEN.Easing.Exponential.Out)
+       tweenRobot.start();
+
+       changeCamera.style.display='none'
+       cyber2.style.display='flex'
+  
+  })
+ let cameraPositionRetour={y:-15}
+ let targetRetour={y:30}
+
+ let cameraPositionRetourFuture={y:-20}
+ let targetRetourFuture={y:0}
+ 
+ const tweenRetourFuture=new TWEEN.Tween(cameraPositionRetourFuture).to(targetRetourFuture,2000)
+ const tweenRetour=new TWEEN.Tween(cameraPositionRetour).to(targetRetour,2000)
+  cyber2.addEventListener('click',()=>{
+
+    tweenRetour.onUpdate(()=>{
+      objet2.position.y=cameraPositionRetour.y
+     });
+     tweenRetour.easing(TWEEN.Easing.Exponential.Out)
+     tweenRetour.start();
+
+     tweenRetourFuture.onUpdate(()=>{
+      objet.position.y=cameraPositionRetourFuture.y
+     });
+     tweenRetourFuture.easing(TWEEN.Easing.Exponential.Out)
+     tweenRetourFuture.start();
+
+     changeCamera.style.display='flex'
+     cyber2.style.display='none'
   })
 
   TWEEN.update()
-  let chargement=document.querySelector('.loading')
 
+  let chargement=document.querySelector('.loading')
   if(objet){
     chargement.style.display="none"
   }
-  
-  
+  if(objet2){
+    objet2.rotation.y+=0.001
+  }
     renderer.render(scene,camera)
     requestAnimationFrame(animate)
 }
-
   animate()
   /* resize de la camera*/
 window.onresize = function () {

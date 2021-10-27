@@ -62,7 +62,7 @@ animation: tourne infinite linear 10s;
 }
 .chargement{
   position: absolute;
-  color:#71519B;
+  color:#FF5E57;
   opacity: 0.8;
   font-family: 'Roboto', sans-serif;
   letter-spacing: 5px;
@@ -98,6 +98,9 @@ transition: ease-in-out 0.5s;
 .un:hover{
   cursor: pointer;
   transform: rotateX(360deg);
+}
+#deux{
+  display: none;
 }
 .titre{
 position: absolute;
