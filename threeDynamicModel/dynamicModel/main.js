@@ -8,7 +8,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 const gltfLoader=new GLTFLoader()
 const scene=new THREE.Scene()
 
-let camera=new THREE.PerspectiveCamera(5,window.innerWidth/window.innerHeight,0.1,1000)
+let camera=new THREE.PerspectiveCamera(5,window.innerWidth/window.innerHeight,2,4000)
 const renderer=new THREE.WebGL1Renderer({
   canvas:document.getElementById('back'),
   alpha:true,
@@ -18,7 +18,10 @@ const renderer=new THREE.WebGL1Renderer({
   renderer.setSize(window.innerWidth,window.innerHeight)
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1;
+  renderer.toneMapping = THREE.ReinhardToneMapping;
   renderer.outputEncoding = THREE.sRGBEncoding;
+  
+
 
 /*modèle blender*/
 
@@ -37,17 +40,31 @@ gltfLoader.load('scene.gltf',(gltf)=>{
 })
 
 let objet2
+let clock
+clock = new THREE.Clock();
+let mixer
+const ambientLight = new THREE.AmbientLight(0xffffff);
+ambientLight.intensity=5
+scene.add(ambientLight); 
 
 gltfLoader.load('robot/scene.gltf',(gltf2)=>{
     objet2=gltf2.scene
     if(objet2){
-    objet2.position.y=30
-    objet2.rotation.y=25.2
-    objet2.position.z=-300
+    objet2.position.y=130
+    objet2.rotation.y=600
+    objet2.position.z=-3000
+    mixer = new THREE.AnimationMixer( objet2 );
+        
+    gltf2.animations.forEach( ( clip ) => {
+      
+        mixer.clipAction( clip ).play();
+      
+    } );
     }
+  
   scene.add(objet2)
 },(xhr) => {
-  console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+  console.log((xhr.loaded / xhr.total) * 100 + '% loaded2')
 },
 (error) => {
   console.log(error)
@@ -130,8 +147,8 @@ let target4={y:0}
     tween4.start();
   }
   
-  let cameraInitialRobot={y:30}
-   let targetCameraRobot={y:-15}
+  let cameraInitialRobot={y:130}
+   let targetCameraRobot={y:-130}
 
    let cameraPositionInitial={y:2}
    let targetCamera={y:-20}
@@ -151,7 +168,7 @@ let target4={y:0}
       tweenCamera.easing(TWEEN.Easing.Exponential.Out)
       tweenCamera.start();
 
-      tweenRobot.onUpdate(()=>{
+     tweenRobot.onUpdate(()=>{
         objet2.position.y=cameraInitialRobot.y
        });
        tweenRobot.easing(TWEEN.Easing.Exponential.Out)
@@ -161,8 +178,8 @@ let target4={y:0}
        cyber2.style.display='flex'
   
   })
- let cameraPositionRetour={y:-15}
- let targetRetour={y:30}
+ let cameraPositionRetour={y:-130}
+ let targetRetour={y:130}
 
  let cameraPositionRetourFuture={y:-20}
  let targetRetourFuture={y:0}
@@ -193,9 +210,11 @@ let target4={y:0}
   if(objet){
     chargement.style.display="none"
   }
-  if(objet2){
-    objet2.rotation.y+=0.001
-  }
+  /*if(objet2){
+    objet2.rotation.y+=0.001  
+  }*/
+  const delta = clock.getDelta();
+  if ( mixer ) mixer.update( delta );
     renderer.render(scene,camera)
     requestAnimationFrame(animate)
 }

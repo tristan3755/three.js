@@ -465,22 +465,22 @@
   ],
   "images": [
     {
-      "uri": "mat_zeldaEyes_baseColor.png"
+      "uri": "textures/mat_zeldaEyes_baseColor.png"
     },
     {
-      "uri": "mat_zeldaHair_baseColor.png"
+      "uri": "textures/mat_zeldaHair_baseColor.png"
     },
     {
-      "uri": "mat_zelda_baseColor.png"
+      "uri": "textures/mat_zelda_baseColor.png"
     },
     {
-      "uri": "mat_misc_baseColor.png"
+      "uri": "textures/mat_misc_baseColor.png"
     },
     {
-      "uri": "mat_fire_baseColor.png"
+      "uri": "textures/mat_fire_baseColor.png"
     },
     {
-      "uri": "mat_environment_baseColor.png"
+      "uri": "textures/mat_environment_baseColor.png"
     }
   ],
   "materials": [
