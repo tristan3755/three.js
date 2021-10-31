@@ -27,7 +27,7 @@ const renderer=new THREE.WebGL1Renderer({
 
 camera.position.set(0,2,185)
 
-let objet
+  let objet
 
 gltfLoader.load('scene.gltf',(gltf)=>{
   objet=gltf.scene
@@ -210,9 +210,9 @@ let target4={y:0}
   if(objet){
     chargement.style.display="none"
   }
-  /*if(objet2){
+  if(objet2){
     objet2.rotation.y+=0.001  
-  }*/
+  }
   const delta = clock.getDelta();
   if ( mixer ) mixer.update( delta );
     renderer.render(scene,camera)
