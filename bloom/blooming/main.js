@@ -12,6 +12,7 @@ import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
 
+
 /*const THREE=require('three')*/
 const gltfLoader=new GLTFLoader()
 
@@ -153,8 +154,6 @@ window.onresize = function () {
  /*composer.setSize( width, height );*/
 };
 
-
-
 /*liquify*/
 
 new hoverEffect(
@@ -166,3 +165,18 @@ new hoverEffect(
     displacementImage:'./heightMap.png'
   }
 )
+
+/*slider*/
+
+const app=new Vue({
+  el:'#setcSlider',
+  data:{
+toggle:false,
+},
+  methods:{
+changeFalse(){
+  this.toggle=!this.toggle
+  return this.toggle
+}
+  }
+})
